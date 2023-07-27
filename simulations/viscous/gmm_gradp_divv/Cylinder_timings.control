@@ -1,0 +1,106 @@
+!
+!       *******************
+!       Sample control file
+!       *******************
+!
+!-------------------------- Configuration:-
+                          Mesh file name = MESH/Cylinder.msh
+                      Solution file name = RESULTS_timings/Cylinder.hsol
+               Save sensor with solution = .true.
+            Save gradients with solution = .true.
+                2D mesh offset direction = z
+                                 Restart = .false.
+                       Restart file name = RESULTS/Cylinder_0000650000.hsol
+
+!-------------------- Physical parameters:-
+!                        ** Navier-Stokes
+                          Flow equations = NS
+                             Mach number = 2.0
+                         Reynolds number = 1e5
+                          Prandtl number = 0.72
+                               AoA Theta = 0.0
+                                 AoA Phi = 0.0
+                       Compute gradients = .true.
+
+!------------------------- Discretization:-
+                        Polynomial order = 4
+                    Discretization nodes = Gauss-Lobatto
+                          Riemann solver = Matrix dissipation
+                 Inviscid discretization = Split-form
+                               Averaging = Chandrasekar
+                      Gradient variables = Entropy
+                  Viscous discretization = BR1
+
+!----------------------- Shock-capturing:-
+                 Enable shock-capturing = .true.
+                           Shock sensor = GMM
+                     Shock first method = Non-filtered
+                    Shock second method = Non-filtered
+                   Shock viscous flux 1 = Guermond-Popov
+                   Shock viscous flux 2 = Guermond-Popov
+                  Shock update strategy = Sensor
+                             Shock mu 1 = 0.0
+                          Shock alpha 1 = 0.0
+                             Shock mu 2 = 8.0e-2
+                          Shock alpha 2 = 8.0e-2
+
+              Sensor number of clusters = 6
+                       Sensor variables = [grad p, div v]
+                      Sensor skip steps = 0
+
+!----------------------- Time integration:-
+                        Time integration = Explicit
+                         Explicit method = SSPRK33
+                          Limit timestep = .true.
+                         Limiter minimum = 1e-3
+                                      dt = 2e-4
+                    Number of time steps = 20
+                         Output interval = 200
+                   Convergence tolerance = 1.0e-10
+                           Autosave mode = Iteration
+                       Autosave interval = 500
+
+!-------------------- Boundary conditions:-
+#define boundary Inflow
+  type = Inflow
+#end
+
+#define boundary Outflow
+  type = Outflow
+#end
+
+#define boundary Cylinder
+  type = NoSlipWall
+#end
+
+! Tw = Tw0 * T0, Tw0 = 0.5, T0 = 1.8 (M=2) * 288.889 K
+! #define boundary Cylinder
+!     type = NoSlipWall
+!     wall type (adiabatic/isothermal) = isothermal
+!     wall temperature = 260
+! #end
+
+#define boundary Back
+  type = FreeSlipWall
+#end
+
+#define boundary Front
+  type = FreeSlipWall
+#end
+
+!------------------------------- Monitors:-
+!#define surface monitor 1
+!  name = lift
+!  marker = Cylinder
+!  variable = lift
+!  reference surface = 1.0
+!  direction = [0.0, 1.0, 0.0]
+!#end
+!
+!#define surface monitor 2
+!  name = drag
+!  marker = Cylinder
+!  variable = drag
+!  reference surface = 1.0
+!  direction = [1.0, 0.0, 0.0]
+!#end

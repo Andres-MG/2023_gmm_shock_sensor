@@ -1,0 +1,13 @@
+!
+!       **************
+!       Postprocessing
+!       **************
+!
+                              hmesh file = MESH/Cylinder_0000000000.hmesh
+                      hsol files pattern = *300000.hsol
+                        output file type = vtkhdf
+                           has gradients = .true.
+                      gradient variables = entropy
+                           dimensionless = .true.
+                        output variables = Q, p, Mach, sensor
+                       !output variables = rho_x, rho_y, p_x, p_y, divV, Q, p, Mach, sensor, eID
