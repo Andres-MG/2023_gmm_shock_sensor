@@ -4,10 +4,14 @@
 !       **************
 !
                               hmesh file = MESH/Cylinder_0000000000.hmesh
+					      ! Boundary regions for the Cp plot
+					      !boundary file = MESH/Cylinder.bmesh
                       hsol files pattern = *300000.hsol
                         output file type = vtkhdf
                            has gradients = .true.
                       gradient variables = entropy
                            dimensionless = .true.
-                        output variables = Q, p, Mach, sensor
+                       ! Flow field and sensor plots, and Cp plot
+                       !output variables = Q, p, Mach, sensor
+                       ! Feature space plots
                        !output variables = rho_x, rho_y, p_x, p_y, divV, Q, p, Mach, sensor, eID
