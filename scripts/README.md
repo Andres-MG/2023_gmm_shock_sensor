@@ -1,8 +1,11 @@
 # Scripts
 
-These files generate the plots of figure 6 (Cp) and figure 14 (computational cost):
+These files generate the plots of figure 6 (Cp), figures 10-13 (BIC, feature space and nodal
+sensor) and figure 14 (computational cost):
 
 * cp_plot.py
+
+* statistics.py
 
 * benchmark.py
 
