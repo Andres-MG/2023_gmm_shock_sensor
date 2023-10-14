@@ -1,0 +1,170 @@
+{
+  "GMM": [
+    {
+      "procs": 1,
+      "threads": 1,
+      "sensor": 7.133,
+      "iteration": 56.261
+    },
+    {
+      "procs": 1,
+      "threads": 2,
+      "sensor": 4.434,
+      "iteration": 31.324
+    },
+    {
+      "procs": 1,
+      "threads": 4,
+      "sensor": 3.141,
+      "iteration": 18.460
+    },
+    {
+      "procs": 10,
+      "threads": 1,
+      "sensor": 0.989,
+      "iteration": 8.383
+    },
+    {
+      "procs": 10,
+      "threads": 2,
+      "sensor": 0.657,
+      "iteration": 4.937
+    },
+    {
+      "procs": 10,
+      "threads": 4,
+      "sensor": 0.470,
+      "iteration": 2.745
+    },
+    {
+      "procs": 20,
+      "threads": 1,
+      "sensor": 0.536,
+      "iteration": 4.461
+    },
+    {
+      "procs": 20,
+      "threads": 2,
+      "sensor": 0.407,
+      "iteration": 2.718
+    },
+    {
+      "procs": 20,
+      "threads": 4,
+      "sensor": 0.281,
+      "iteration": 1.573
+    }
+  ],
+  "Modal": [
+    {
+      "procs": 1,
+      "threads": 1,
+      "sensor": 0.419,
+      "iteration": 58.720
+    },
+    {
+      "procs": 1,
+      "threads": 2,
+      "sensor": 0.209,
+      "iteration": 32.005
+    },
+    {
+      "procs": 1,
+      "threads": 4,
+      "sensor": 0.088,
+      "iteration": 15.152
+    },
+    {
+      "procs": 10,
+      "threads": 1,
+      "sensor": 0.058,
+      "iteration": 8.119
+    },
+    {
+      "procs": 10,
+      "threads": 2,
+      "sensor": 0.02,
+      "iteration": 3.722
+    },
+    {
+      "procs": 10,
+      "threads": 4,
+      "sensor": 0.009,
+      "iteration": 2.309
+    },
+    {
+      "procs": 20,
+      "threads": 1,
+      "sensor": 0.016,
+      "iteration": 3.951
+    },
+    {
+      "procs": 20,
+      "threads": 2,
+      "sensor": 0.009,
+      "iteration": 2.259
+    },
+    {
+      "procs": 20,
+      "threads": 4,
+      "sensor": 0.009,
+      "iteration": 1.740
+    }
+  ],
+  "Integral": [
+    {
+      "procs": 1,
+      "threads": 1,
+      "sensor": 0.345,
+      "iteration": 56.518
+    },
+    {
+      "procs": 1,
+      "threads": 2,
+      "sensor": 0.155,
+      "iteration": 27.500
+    },
+    {
+      "procs": 1,
+      "threads": 4,
+      "sensor": 0.082,
+      "iteration": 15.441
+    },
+    {
+      "procs": 10,
+      "threads": 1,
+      "sensor": 0.033,
+      "iteration": 6.428
+    },
+    {
+      "procs": 10,
+      "threads": 2,
+      "sensor": 0.035,
+      "iteration": 5.060
+    },
+    {
+      "procs": 10,
+      "threads": 4,
+      "sensor": 0.015,
+      "iteration": 2.473
+    },
+    {
+      "procs": 20,
+      "threads": 1,
+      "sensor": 0.014,
+      "iteration": 3.403
+    },
+    {
+      "procs": 20,
+      "threads": 2,
+      "sensor": 0.011,
+      "iteration": 1.876
+    },
+    {
+      "procs": 20,
+      "threads": 4,
+      "sensor": 0.004,
+      "iteration": 1.161
+    }
+  ]
+}

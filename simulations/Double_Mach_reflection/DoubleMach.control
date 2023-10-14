@@ -1,0 +1,79 @@
+!
+!       *******************
+!       Sample control file
+!       *******************
+!
+!-------------------------- Configuration:-
+                          Mesh file name = MESH/DoubleMach.msh
+                      Solution file name = RESULTS/DoubleMach.hsol
+               Save sensor with solution = .true.
+            Save gradients with solution = .true.
+                2D mesh offset direction = z
+                                 Restart = .false.
+                       Restart file name = RESULTS/DoubleMach_0000003800.hsol
+
+!-------------------- Physical parameters:-
+!                        ** Navier-Stokes
+                          Flow equations = NS
+                             Mach number = 10.0
+                         Reynolds number = 0.0
+                          Prandtl number = 0.72
+                               AoA Theta = 0.0
+                                 AoA Phi = 0.0
+                       Compute gradients = .true.
+
+!------------------------- Discretization:-
+                        Polynomial order = 4
+                    Discretization nodes = Gauss-Lobatto
+                          Riemann solver = Matrix dissipation
+                 Inviscid discretization = Subcell !Split-form
+                   Maximum DGFV blending = 0.5
+                               Averaging = Chandrasekar
+                      Gradient variables = Entropy
+                  Viscous discretization = BR1
+
+!----------------------- Shock-capturing:-
+                 Enable shock-capturing = .true.
+                           Shock sensor = GMM nodal
+                     Shock first method = None !Non-filtered
+                    Shock second method = None !Non-filtered
+                   Shock viscous flux 1 = Guermond-Popov
+                   Shock viscous flux 2 = Guermond-Popov
+                  Shock update strategy = Sensor
+                             Shock mu 1 = 0.0
+                          Shock alpha 1 = 0.0
+                             Shock mu 2 = 1.0e-1
+                          Shock alpha 2 = 1.0e-1
+
+              Sensor number of clusters = 4
+                       Sensor variables = [grad p, div v]
+                      Sensor skip steps = 10
+
+!----------------------- Time integration:-
+                        Time integration = Explicit
+                         Explicit method = SSPRK33
+                          Limit timestep = .true.
+                         Limiter minimum = 1e-13
+                                      dt = 5e-6
+                    Number of time steps = 42000 !300000
+                         Output interval = 200
+                   Convergence tolerance = 1.0e-10
+                           Autosave mode = Iteration
+                       Autosave interval = 2000
+
+!-------------------- Boundary conditions:-
+#define boundary in_left__in_top
+  type = User-defined
+#end
+
+#define boundary out_right__out_bottom
+  type = User-defined
+#end
+
+#define boundary wedge
+  type = FreeSlipWall
+#end
+
+#define boundary back__front
+  type = FreeSlipWall
+#end

@@ -1,17 +1,28 @@
 !
-!       **************
-!       Postprocessing
-!       **************
+! Mesh file
+! ---------
+    hmesh file = MESH/Cylinder_0000000000.hmesh
 !
-                              hmesh file = MESH/Cylinder_0000000000.hmesh
-					      ! Boundary regions for the Cp plot
-					      !boundary file = MESH/Cylinder.bmesh
-                      hsol files pattern = *300000.hsol
-                        output file type = vtkhdf
-                           has gradients = .true.
-                      gradient variables = entropy
-                           dimensionless = .true.
-                       ! Flow field and sensor plots, and Cp plot
-                       !output variables = Q, p, Mach, sensor
-                       ! Feature space plots
-                       !output variables = rho_x, rho_y, p_x, p_y, divV, Q, p, Mach, sensor, eID
+! Boundary file to compute regions for the Cp plot
+! ------------------------------------------------
+!   boundary file = MESH/Cylinder.bmesh
+!
+! Pattern for solution files (uses `ls`)
+! --------------------------------------
+!   hsol files pattern = *.hsol
+!
+! Format of post-processed file
+! (VTKHDF is high order, Tecplot is needed for the Cp and feature-space plots)
+! ----------------------------------------------------------------------------
+    output file type = vtkhdf  ! tecplot
+!
+! Variables to export
+! -------------------
+    output variables = Q, p, Mach, sensor                 ! Flow field, sensor and Cp plots
+!   output variables = divV, u, v, p_x, p_y, rho, p, eID  ! Feature space plots
+!
+! Additional parameters
+! ---------------------
+    has gradients = .true.
+    gradient variables = entropy
+    dimensionless = .true.
