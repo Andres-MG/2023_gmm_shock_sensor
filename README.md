@@ -1,6 +1,6 @@
 # Data repository
 
-[![arxiv](https://img.shields.io/badge/arXiv-2308.00086-red?style=flat-square&logo=arxiv)](https%3A%2F%2Farxiv.org%2Fabs%2F2308.00086)
+[![arxiv](https://img.shields.io/badge/arXiv-2308.00086-red?style=flat-square&logo=arxiv)](https://arxiv.org/abs/2308.00086)
 
 This repository contains code and instructions to reproduce the results reported in the article
 
