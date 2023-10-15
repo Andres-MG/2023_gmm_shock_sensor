@@ -1,7 +1,7 @@
 import pandas as pd
 import matplotlib.pyplot as plt
 
-ref_file = "../sims/Cylinder_viscous/NACA_report_Cp.csv"
+ref_file = "simulations/Cylinder_viscous/NACA_report_Cp.csv"
 ref_color = "grey"
 
 sim_files = [
@@ -9,7 +9,7 @@ sim_files = [
     "integral_gradp/RESULTS_avg/Cylinder.stats.0000400000_cp.csv",
     "modal_rhop/RESULTS_avg/Cylinder.stats.0000400000_cp.csv",
 ]
-sim_files = ["../sims/Cylinder_viscous/" + file for file in sim_files]
+sim_files = ["simulations/Cylinder_viscous/" + file for file in sim_files]
 
 sim_labels = [
     "Modal",
