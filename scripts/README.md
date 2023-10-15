@@ -1,7 +1,7 @@
 # Scripts
 
-These files generate the plots of figure 6 (Cp), figures 10-13 (BIC, feature space and nodal
-sensor) and figure 14 (computational cost):
+These files generate the plots of figure 9 (Cp), figures 13&ndash;15 (BIC and feature spaces),
+table IV (AIC and BIC), and figure 16 (computational cost):
 
 * cp_plot.py
 
@@ -9,20 +9,7 @@ sensor) and figure 14 (computational cost):
 
 * benchmark.py
 
-The auxiliary files for ParaView:
-
-* cp.pvsm
-
-* cp.pwin
-
-generate the data to make the Cp plot. Open `cp.pvsm` with ParaView and save the spreadsheet as a
-CSV file. `cp_plot.py` uses these CSV files to create the plot.
-
-The files:
-
-* sims.pwin
-
-* view.pvcvbc
-
-can be read from ParaView to replicate the window layout and camera setup that generate the
-flow-field and sensor plots that we include in sections VI A and VI B.
+The auxiliary file `cp.pvsm` can be opened from ParaView to generate the data of the Cp plot as a
+CSV file. `cp_plot.py` uses this CSV file to create the plot.
+Files with extension `.pwin` contain ParaView layouts, and `view.pvcvbc` includes camera settings.
+These are the parameters used to export the figures shown in the article.
