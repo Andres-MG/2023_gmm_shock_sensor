@@ -60,16 +60,6 @@ clusters = gmm.predict(normalized_data)
 
 # Sort clusters
 cluster_map = np.argsort(np.sum(gmm.means_**2, axis=1))
-
-# New idea!! ------------------------------------------------------------------
-# centroids = np.zeros((gmm.n_components, 2))
-# for i in range(gmm.n_components):
-#     mask = clusters == i
-#     npts = data.loc[mask, :].shape[0]
-#     centroids[i, :] = data.loc[mask, :].sum() / npts
-# cluster_map = np.argsort(np.sum(centroids**2, axis=1))
-# New idea!! ------------------------------------------------------------------
-
 clusters = np.array(list(map(lambda i: cluster_map[i], clusters)))
 
 # Plot feature space in each cluster
