@@ -1,7 +1,7 @@
 # Scripts
 
-These files generate the plots of figure 9 (Cp), figures 13&ndash;15 (BIC and feature spaces),
-table IV (AIC and BIC), and figure 16 (computational cost):
+These files generate the plots of figure 10 (Cp), figures 15&ndash;17 (BIC and feature spaces),
+tables 4 (AIC and BIC) and 5 (performance), and figure 18 (computational cost):
 
 * cp_plot.py
 

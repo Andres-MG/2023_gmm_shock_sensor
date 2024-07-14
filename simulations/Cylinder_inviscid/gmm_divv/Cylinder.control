@@ -9,8 +9,8 @@
                Save sensor with solution = .true.
             Save gradients with solution = .true.
                 2D mesh offset direction = z
-                                 Restart = .false.
-                       Restart file name = RESULTS/Cylinder_0000300000.hsol
+                                 Restart = .true.
+                       Restart file name = ../gmm_gradp_divv/RESULTS/Cylinder_0000020000.hsol
 
 !-------------------- Physical parameters:-
 !                        ** Navier-Stokes
@@ -33,7 +33,7 @@
 
 !----------------------- Shock-capturing:-
                  Enable shock-capturing = .true.
-                           Shock sensor = Integral with sqrt
+                           Shock sensor = GMM
                      Shock first method = Non-filtered
                     Shock second method = Non-filtered
                    Shock viscous flux 1 = Guermond-Popov
@@ -44,8 +44,7 @@
                              Shock mu 2 = 1.0e-1
                           Shock alpha 2 = 1.0e-1
 
-                     Sensor lower limit = 50.0
-                    Sensor higher limit = 200.0
+              Sensor number of clusters = 6
                        Sensor variables = [div v]
                       Sensor skip steps = 10
 

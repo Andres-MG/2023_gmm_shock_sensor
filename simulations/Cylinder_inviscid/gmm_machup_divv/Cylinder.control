@@ -52,7 +52,7 @@
                         Time integration = Explicit
                          Explicit method = SSPRK33
                           Limit timestep = .true.
-                         Limiter minimum = 1e-3
+                         Limiter minimum = 1e-5
                                       dt = 2e-4
                     Number of time steps = 300000
                          Output interval = 200

@@ -3,7 +3,7 @@ import pandas as pd
 
 # Read data ([SET] the correct file name)
 # ---------------------------------------
-data_set = pd.read_csv('Viscous_divv.tec', delimiter='\s+',skiprows=3)
+data_set = pd.read_csv('Viscous_divv.tec', delimiter=r'\s+',skiprows=3)
 data_set = pd.DataFrame(data_set)
 data_set.columns = [
     'x', 'y', 'z', 'divV', 'u', 'v', 'p_x', 'p_y', 'rho', 'p', 'eID'
@@ -59,7 +59,10 @@ gmm = GaussianMixture(
 clusters = gmm.predict(normalized_data)
 
 # Sort clusters
-cluster_map = np.argsort(np.sum(gmm.means_**2, axis=1))
+cluster_inds = np.argsort(np.sum(gmm.means_**2, axis=1))
+cluster_map = np.empty_like(cluster_inds)
+for i, pos in enumerate(cluster_inds):
+    cluster_map[pos] = i
 clusters = np.array(list(map(lambda i: cluster_map[i], clusters)))
 
 # Plot feature space in each cluster
@@ -98,6 +101,62 @@ plt.legend()
 
 plt.gcf().tight_layout()
 plt.savefig('features.png', dpi=300)
+
+# K-means
+# -------
+from sklearn.cluster import KMeans
+
+kmeans = KMeans(
+    n_clusters=6,     # [SET] the number of clusters
+    init='random',
+    n_init=1,
+).fit(normalized_data)
+
+clusters = kmeans.predict(normalized_data)
+
+# Sort clusters
+cluster_inds = np.argsort(np.sum(kmeans.cluster_centers_**2, axis=1))
+cluster_map = np.empty_like(cluster_inds)
+for i, pos in enumerate(cluster_inds):
+    cluster_map[pos] = i
+clusters = np.array(list(map(lambda i: cluster_map[i], clusters)))
+
+# Plot feature space in each cluster
+# ----------------------------------
+import matplotlib.pyplot as plt
+
+plt.rcParams['text.usetex'] = True
+plt.rcParams['text.latex.preamble'] = r'\usepackage{amsmath}'
+plt.rcParams['font.family'] = 'serif'
+plt.rcParams['font.size'] = 24
+
+# List of colors for each cluster
+colors = ['#2D003C', '#FFC0CB', '#87CEEB', '#FF69B4', '#C934C3', 'b']
+plt.figure(figsize=(10, 8))
+
+# Plot data points for each cluster with different colors
+for i in range(kmeans.n_clusters):
+    subset = data.loc[clusters == i, :]
+    plt.scatter(
+        subset['grad2_p'],  # [SET] the variables of the feature space
+        subset['divv2'],
+        label=f'Cluster {i + 1}',
+        color=colors[i],
+    )
+
+plt.ticklabel_format(style='sci', scilimits=(-3,4))
+
+# [SET] the x label
+plt.xlabel(r'$\lVert\nabla p\rVert^2$')     # |grad p|^2
+# plt.xlabel(r'$\vec{v}\cdot \vec n_p / a$')  # v * np / a
+# plt.xlabel(r'$\max(0, M-1)$')                # max(0, M - 1)
+# plt.xlabel(r'$(\nabla \cdot \vec v)^{2}$')  # div v
+
+plt.ylabel(r'$(\nabla\cdot\vec{v})^2$')     # div v
+plt.legend()
+
+plt.gcf().tight_layout()
+plt.savefig('features_kmeans.png', dpi=300)
 
 # Plot performance metrics
 # ------------------------
@@ -138,7 +197,7 @@ plt.savefig('bic_6.png', bbox_inches='tight', dpi=300, pad_inches = 0)
 # AIC and BID table
 # -----------------
 df = pd.DataFrame({
-    '\# of clusters': range(1, 7),
+    r'\# of clusters': range(1, 7),
     'AIC': aic_values,
     'BIC': bic_values,
 })

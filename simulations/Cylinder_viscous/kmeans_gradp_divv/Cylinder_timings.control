@@ -5,12 +5,12 @@
 !
 !-------------------------- Configuration:-
                           Mesh file name = MESH/Cylinder.msh
-                      Solution file name = RESULTS_avg/Cylinder.hsol
+                      Solution file name = RESULTS_timings/Cylinder.hsol
                Save sensor with solution = .true.
             Save gradients with solution = .true.
                 2D mesh offset direction = z
                                  Restart = .true.
-                       Restart file name = RESULTS/Cylinder_0000300000.hsol
+                       Restart file name = ../gmm_gradp_divv/10_steps/RESULTS/Cylinder_0000300000.hsol
 
 !-------------------- Physical parameters:-
 !                        ** Navier-Stokes
@@ -33,7 +33,7 @@
 
 !----------------------- Shock-capturing:-
                  Enable shock-capturing = .true.
-                           Shock sensor = GMM
+                           Shock sensor = Kmeans
                      Shock first method = Non-filtered
                     Shock second method = Non-filtered
                    Shock viscous flux 1 = Guermond-Popov
@@ -46,15 +46,15 @@
 
               Sensor number of clusters = 6
                        Sensor variables = [grad p, div v]
-                      Sensor skip steps = 10
+                      Sensor skip steps = 0
 
 !----------------------- Time integration:-
                         Time integration = Explicit
                          Explicit method = SSPRK33
                           Limit timestep = .true.
-                         Limiter minimum = 1e-3
+                         Limiter minimum = 1e-5
                                       dt = 2e-4
-                    Number of time steps = 100000
+                    Number of time steps = 20
                          Output interval = 200
                    Convergence tolerance = 1.0e-10
                            Autosave mode = Iteration
@@ -73,6 +73,13 @@
   type = NoSlipWall
 #end
 
+! Tw = Tw0 * T0, Tw0 = 0.5, T0 = 1.8 (M=2) * 288.889 K
+! #define boundary Cylinder
+!     type = NoSlipWall
+!     wall type (adiabatic/isothermal) = isothermal
+!     wall temperature = 260
+! #end
+
 #define boundary Back
   type = FreeSlipWall
 #end
@@ -82,10 +89,18 @@
 #end
 
 !------------------------------- Monitors:-
-#define statistics
-  initial time      = 0.0
-  initial iteration = 1
-  sampling interval = 1
-  dump interval     = 500
-   @start*
-#end
+!#define surface monitor 1
+!  name = lift
+!  marker = Cylinder
+!  variable = lift
+!  reference surface = 1.0
+!  direction = [0.0, 1.0, 0.0]
+!#end
+!
+!#define surface monitor 2
+!  name = drag
+!  marker = Cylinder
+!  variable = drag
+!  reference surface = 1.0
+!  direction = [1.0, 0.0, 0.0]
+!#end

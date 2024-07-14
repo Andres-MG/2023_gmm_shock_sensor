@@ -1,6 +1,6 @@
 # Simulations
 
-In this folder we include the configuration files to run the simulations of the results secion (VI)
+In this folder we include the configuration files to run the simulations of the results secion
 and appendix C.
 
 To perform the simulations, move to the directory of the specific case to be computed, copy or
